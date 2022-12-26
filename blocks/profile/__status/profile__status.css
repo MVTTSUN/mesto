@@ -1,0 +1,11 @@
+.profile__status {
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.2;
+}
+
+@media (max-width: 600px) {
+  .profile__status {
+    font-size: 14px;
+  }
+}

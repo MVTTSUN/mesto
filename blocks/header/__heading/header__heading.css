@@ -1,0 +1,9 @@
+.header__heading {
+  margin: 0;
+}
+
+@media (max-width: 600px) {
+  .header__heading {
+    margin-left: 27px;
+  }
+}

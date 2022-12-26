@@ -1,0 +1,6 @@
+.photos__container {
+  display: flex;
+  padding: 28px 20px;
+  justify-content: space-between;
+  align-items: center;
+}

@@ -1,0 +1,8 @@
+.photos__like-button {
+  cursor: pointer;
+  transition: opacity .3s ease-in-out;
+}
+
+.photos__like-button:hover {
+  opacity: .5;
+}
