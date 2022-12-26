@@ -33,5 +33,4 @@ popup.addEventListener('submit', (evt) => {
   }, 300);
   nameProfile.textContent = nameInput.value;
   statusProfile.textContent = statusInput.value;
-  popup.classList.remove('popup_opened');
 });
