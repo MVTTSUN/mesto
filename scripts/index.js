@@ -1,3 +1,6 @@
+import '../index.html';
+import '../pages/index.css';
+
 const editButton = document.querySelector('.profile__edit-button');
 const closeButton = document.querySelector('.popup__close-button');
 const popup = document.querySelector('.popup');
