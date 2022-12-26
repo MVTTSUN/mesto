@@ -27,6 +27,10 @@ closeButton.addEventListener('click', () => {
 
 popup.addEventListener('submit', (evt) => {
   evt.preventDefault();
+  document.querySelector('.popup_opened').style.opacity = 0;
+  setTimeout(() => {
+    popup.classList.remove('popup_opened');
+  }, 300);
   nameProfile.textContent = nameInput.value;
   statusProfile.textContent = statusInput.value;
   popup.classList.remove('popup_opened');
