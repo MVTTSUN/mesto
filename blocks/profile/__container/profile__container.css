@@ -7,5 +7,6 @@
 @media (max-width: 600px) {
   .profile__container {
     flex-direction: column;
+    gap: 27px;
   }
 }

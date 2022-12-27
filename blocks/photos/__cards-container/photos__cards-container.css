@@ -1,4 +1,4 @@
-.photos__list {
+.photos__cards-container {
   list-style: none;
   padding-left: 0;
   margin: 0;
@@ -9,13 +9,13 @@
 }
 
 @media (max-width: 870px) {
-  .photos__list {
+  .photos__cards-container {
     grid-template-columns: repeat(2, minmax(100px, 282px));
   }
 }
 
 @media (max-width: 600px) {
-  .photos__list {
+  .photos__cards-container {
     grid-template-columns: minmax(100px, 282px);
   }
 }

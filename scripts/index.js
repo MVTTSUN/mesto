@@ -1,36 +1,31 @@
-const editButton = document.querySelector('.profile__edit-button');
-const closeButton = document.querySelector('.popup__close-button');
+const buttonEdit = document.querySelector('.profile__edit-button');
+const buttonClose = document.querySelector('.popup__close-button');
 const popup = document.querySelector('.popup');
-const nameInput = document.querySelector('.popup__name-input');
-const statusInput = document.querySelector('.popup__status-input');
-const nameProfile = document.querySelector('.profile__name');
-const statusProfile = document.querySelector('.profile__status');
+const inputName = document.querySelector('#name-input');
+const inputStatus = document.querySelector('#status-input');
+const profileName = document.querySelector('.profile__name');
+const profileStatus = document.querySelector('.profile__status');
+const formPopup = document.querySelector('#form-popup');
 
-nameInput.value = nameProfile.textContent;
-statusInput.value = statusProfile.textContent;
-
-editButton.addEventListener('click', () => {
+const openEditProfile = () => {
+  inputName.value = profileName.textContent;
+  inputStatus.value = profileStatus.textContent;
   popup.classList.add('popup_opened');
-  setTimeout(() => {
-    document.querySelector('.popup_opened').style.opacity = 1;
-  }, 1);
-});
+};
 
-closeButton.addEventListener('click', () => {
-  document.querySelector('.popup_opened').style.opacity = 0;
-  setTimeout(() => {
-    popup.classList.remove('popup_opened');
-  }, 300);
-  nameInput.value = nameProfile.textContent;
-  statusInput.value = statusProfile.textContent;
-});
+const closeEditProfile = () => {
+  popup.classList.remove('popup_opened');
+};
 
-popup.addEventListener('submit', (evt) => {
+const sendFormEditProfile = (evt) => {
   evt.preventDefault();
-  document.querySelector('.popup_opened').style.opacity = 0;
-  setTimeout(() => {
-    popup.classList.remove('popup_opened');
-  }, 300);
-  nameProfile.textContent = nameInput.value;
-  statusProfile.textContent = statusInput.value;
-});
+  profileName.textContent = inputName.value;
+  profileStatus.textContent = inputStatus.value;
+  popup.classList.remove('popup_opened');
+};
+
+buttonEdit.addEventListener('click', openEditProfile);
+
+buttonClose.addEventListener('click', closeEditProfile);
+
+formPopup.addEventListener('submit', sendFormEditProfile);

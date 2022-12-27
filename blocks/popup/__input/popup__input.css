@@ -1,12 +1,12 @@
-.popup__name-input {
+.popup__input {
   padding: 8px 0;
   box-sizing: border-box;
   width: 100%;
-  margin-bottom: 25px;
   display: block;
   border: none;
+  margin-bottom: 25px;
   border-bottom: 1px solid rgba(0, 0, 0, .2);
   outline: none;
   font-size: 14px;
-  line-height: 1;
+  line-height: 17px;
 }
