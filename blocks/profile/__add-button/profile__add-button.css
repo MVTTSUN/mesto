@@ -15,12 +15,6 @@
 
 @media (max-width: 870px) {
   .profile__add-button {
-    width: 110px;
-  }
-}
-
-@media (max-width: 600px) {
-  .profile__add-button {
     width: 100%;
   }
 }

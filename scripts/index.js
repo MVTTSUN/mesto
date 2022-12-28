@@ -21,7 +21,7 @@ const sendFormEditProfile = (evt) => {
   evt.preventDefault();
   profileName.textContent = inputName.value;
   profileStatus.textContent = inputStatus.value;
-  popup.classList.remove('popup_opened');
+  closeEditProfile();
 };
 
 buttonEdit.addEventListener('click', openEditProfile);
