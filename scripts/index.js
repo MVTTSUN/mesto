@@ -32,14 +32,14 @@ const buttonEdit = document.querySelector('.profile__edit-button');
 const popupEdit = document.querySelector('#popup-edit');
 const inputName = popupEdit.querySelector('#name-input');
 const inputStatus = popupEdit.querySelector('#status-input');
-const formPopupEdit = popupEdit.querySelector('#form-popup');
+const formPopupEdit = document.querySelector('#form-popup-edit');
 
 const buttonsClose = document.querySelectorAll('.popup__close-button');
 
 const buttonAdd = document.querySelector('.profile__add-button');
 
 const popupAdd = document.querySelector('#popup-add');
-const formPopupAdd = popupAdd.querySelector('#form-popup');
+const formPopupAdd = document.querySelector('#form-popup-add');
 
 const cardTemplate = document.querySelector('#card-template').content;
 const cardsContainer = document.querySelector('.photos__cards-container');
