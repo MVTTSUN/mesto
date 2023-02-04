@@ -13,6 +13,7 @@
       <img src="./images/logo.svg" alt="Логотип сайта" class="header__logo">
     </a>
   </header>
+
   <main>
     <section class="profile" aria-label="Профиль">
       <div class="profile__container">
@@ -28,57 +29,15 @@
       <button type="button" class="profile__add-button button" aria-label="Добавить фотографию"></button>
     </section>
     <section class="photos" aria-label="Фотографии">
-      <ul class="photos__cards-container">
-        <li class="card">
-          <img src="./images/altai.jpg" alt="Пасмурная, приятного цвета погода на берегу озера на фоне больших, красивых гор" class="card__img">
-          <div class="card__container">
-            <h2 class="card__name">Алтай</h2>
-            <button type="button" class="card__like-button button" aria-label="Лайк"></button>
-          </div>
-        </li>
-        <li class="card">
-          <img src="./images/elbrus.jpg" alt="Высокий, резкий обрыв, на котором силуэт велосипедиста, смотрящего вдаль, на зеленые поля и горы со снегом" class="card__img">
-          <div class="card__container">
-            <h2 class="card__name">Эльбрус</h2>
-            <button type="button" class="card__like-button button" aria-label="Лайк"></button>
-          </div>
-        </li>
-        <li class="card">
-          <img src="./images/north-osetia.jpg" alt="Парень ныряет в озеро, на другом берегу коттеджный дом. На фоне Высокие горы, пропадающие в облаках" class="card__img">
-          <div class="card__container">
-            <h2 class="card__name">Северная Осетия</h2>
-            <button type="button" class="card__like-button button" aria-label="Лайк"></button>
-          </div>
-        </li>
-        <li class="card">
-          <img src="./images/olkhon-island.jpg" alt="Покрытое толстым льдом озеро, на фоне заснеженный, скалистый остров" class="card__img">
-          <div class="card__container">
-            <h2 class="card__name">Остров Ольхон</h2>
-            <button type="button" class="card__like-button button" aria-label="Лайк"></button>
-          </div>
-        </li>
-        <li class="card">
-          <img src="./images/sudak.jpg" alt="Вид с высоких гор на море, посередине горный выступ с деревом" class="card__img">
-          <div class="card__container">
-            <h2 class="card__name">Судак</h2>
-            <button type="button" class="card__like-button button" aria-label="Лайк"></button>
-          </div>
-        </li>
-        <li class="card">
-          <img src="./images/vyborg.jpg" alt="Лесная роща с огромными, покрытыми мхом валунами" class="card__img">
-          <div class="card__container">
-            <h2 class="card__name">Выборг</h2>
-            <button type="button" class="card__like-button button" aria-label="Лайк"></button>
-          </div>
-        </li>
-      </ul>
+      <ul class="photos__cards-container"></ul>
     </section>
   </main>
+
   <footer class="footer">
     <p class="footer__copyright" lang="en">&copy; 2022 Mesto Russia</p>
   </footer>
 
-  <div class="popup">
+  <div id="popup-edit" class="popup">
     <div class="popup__container">
       <button type="button" class="popup__close-button button" aria-label="Закрытие формы"></button>
       <form action="#" id="form-popup" name="form-popup">
@@ -89,6 +48,40 @@
       </form>
     </div>
   </div>
+
+  <div id="popup-add" class="popup">
+    <div class="popup__container">
+      <button type="button" class="popup__close-button button" aria-label="Закрытие формы"></button>
+      <form action="#" id="form-popup" name="form-popup">
+        <h2 class="popup__name">Новое место</h2>
+        <input id="title-place-input" name="title-place" class="popup__input" type="text" placeholder="Название">
+        <input id="source-image-input" name="source-image" class="popup__input" type="text" placeholder="Ссылка на картинку">
+        <button class="popup__submit-button button" type="submit">Создать</button>
+      </form>
+    </div>
+  </div>
+
+  <div id="popup-picture" class="popup">
+    <div class="popup__container popup__container_type_picture">
+      <button type="button" class="popup__close-button button" aria-label="Закрытие полноэкранного просмотра картинки"></button>
+      <figure class="popup__figure">
+        <img class="popup__img" src="" alt="">
+        <figcaption class="popup__caption"></figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <template id="card-template">
+    <li class="card">
+      <button type="button" class="card__trash-button button" aria-label="Корзина"></button>
+      <img src="" alt="" class="card__img">
+      <div class="card__container">
+        <h2 class="card__name"></h2>
+        <button type="button" class="card__like-button button" aria-label="Лайк"></button>
+      </div>
+    </li>
+  </template>
+  
   <script src="./scripts/index.js"></script>
 </body>
 </html>
