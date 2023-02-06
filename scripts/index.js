@@ -16,18 +16,25 @@ const inputSourceImage = popupAdd.querySelector('#source-image-input');
 const formPopupAdd = document.querySelector('#form-popup-add');
 
 const cardTemplate = document.querySelector('#card-template').content;
-const titleCard = cardTemplate.querySelector('.card__name');
 const cardsContainer = document.querySelector('.photos__cards-container');
 
 const popupPicture = document.querySelector('#popup-picture');
 const imgPopup = popupPicture.querySelector('.popup__img');
 const captionPopup = popupPicture.querySelector('.popup__caption');
 
-const openPopupPicture = (evt) => {
-  imgPopup.src = evt.target.src;
-  imgPopup.alt = evt.target.alt;
-  captionPopup.textContent = titleCard.textContent;
-  popupPicture.classList.add('popup_opened');
+const openPopup = (popup) => {
+  popup.classList.add('popup_opened');
+};
+
+const closePopup = (popup) => {
+  popup.classList.remove('popup_opened');
+};
+
+const openPopupPicture = (namePicture, link) => {
+  imgPopup.src = link;
+  imgPopup.alt = namePicture;
+  captionPopup.textContent = namePicture;
+  openPopup(popupPicture);
 };
 
 const likeButton = (evt) => {
@@ -46,7 +53,7 @@ const createCard = (namePicture, link) => {
   cardImage.src = link;
   cardImage.alt = namePicture;
 
-  cardImage.addEventListener('click', openPopupPicture);
+  cardImage.addEventListener('click', () => openPopupPicture(namePicture, link));
   cardClone.querySelector('.card__like-button').addEventListener('click', likeButton);
   cardClone.querySelector('.card__trash-button').addEventListener('click', deletePicture);
 
@@ -60,14 +67,6 @@ const initCards = () => {
     const card = createCard(name, link);
     renderCard(card);
   });
-};
-
-const openPopup = (popup) => {
-  popup.classList.add('popup_opened');
-};
-
-const closePopup = (popup) => {
-  popup.classList.remove('popup_opened');
 };
 
 const openEditProfile = () => {
@@ -88,14 +87,14 @@ const sendFormEditProfile = (evt) => {
   profileName.textContent = inputName.value;
   profileStatus.textContent = inputStatus.value;
 
-  closePopup(evt);
+  closePopup(popupEdit);
 };
 
 const sendFormCreatePicture = (evt) => {
   evt.preventDefault();
   const card = createCard(inputTitlePlace.value, inputSourceImage.value);
   renderCard(card);
-  closePopup(evt);
+  closePopup(popupAdd);
 };
 
 initCards();
