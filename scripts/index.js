@@ -16,15 +16,17 @@ const inputSourceImage = popupAdd.querySelector('#source-image-input');
 const formPopupAdd = document.querySelector('#form-popup-add');
 
 const cardTemplate = document.querySelector('#card-template').content;
+const titleCard = cardTemplate.querySelector('.card__name');
 const cardsContainer = document.querySelector('.photos__cards-container');
 
-const openPopupPicture = (evt) => {
-  const popupPicture = document.querySelector('#popup-picture');
-  const picture = popupPicture.querySelector('.popup__img');
+const popupPicture = document.querySelector('#popup-picture');
+const imgPopup = popupPicture.querySelector('.popup__img');
+const captionPopup = popupPicture.querySelector('.popup__caption');
 
-  picture.src = evt.target.src;
-  picture.alt = evt.target.alt;
-  popupPicture.querySelector('.popup__caption').textContent = evt.target.parentNode.querySelector('.card__name').textContent;
+const openPopupPicture = (evt) => {
+  imgPopup.src = evt.target.src;
+  imgPopup.alt = evt.target.alt;
+  captionPopup.textContent = titleCard.textContent;
   popupPicture.classList.add('popup_opened');
 };
 
@@ -48,12 +50,15 @@ const createCard = (namePicture, link) => {
   cardClone.querySelector('.card__like-button').addEventListener('click', likeButton);
   cardClone.querySelector('.card__trash-button').addEventListener('click', deletePicture);
 
-  cardsContainer.prepend(cardClone);
+  return cardClone;
 };
+
+const renderCard = (card) => cardsContainer.prepend(card);
 
 const initCards = () => {
   initialCards.forEach(({name, link}) => {
-    createCard(name, link);
+    const card = createCard(name, link);
+    renderCard(card);
   });
 };
 
@@ -61,8 +66,8 @@ const openPopup = (popup) => {
   popup.classList.add('popup_opened');
 };
 
-const closePopup = (evt) => {
-  evt.target.closest('.popup').classList.remove('popup_opened');
+const closePopup = (popup) => {
+  popup.classList.remove('popup_opened');
 };
 
 const openEditProfile = () => {
@@ -88,19 +93,19 @@ const sendFormEditProfile = (evt) => {
 
 const sendFormCreatePicture = (evt) => {
   evt.preventDefault();
-  
-  createCard(inputTitlePlace.value, inputSourceImage.value);
+  const card = createCard(inputTitlePlace.value, inputSourceImage.value);
+  renderCard(card);
   closePopup(evt);
-
-  inputTitlePlace.value = '';
-  inputSourceImage.value = '';
 };
 
 initCards();
 
 buttonEdit.addEventListener('click', openEditProfile);
 buttonAdd.addEventListener('click', openAddPicture);
-buttonsClose.forEach(el => el.addEventListener('click', closePopup));
+buttonsClose.forEach(el => {
+  const popup = el.closest('.popup');
+  el.addEventListener('click', () => closePopup(popup));
+});
 
 formPopupEdit.addEventListener('submit', sendFormEditProfile);
 formPopupAdd.addEventListener('submit', sendFormCreatePicture);
