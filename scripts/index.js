@@ -83,6 +83,7 @@ const initCards = () => {
 const openEditProfile = () => {
   inputName.value = profileName.textContent;
   inputStatus.value = profileStatus.textContent;
+  resetValidateForm(popupEdit);
   openPopup(popupEdit);
 };
 
