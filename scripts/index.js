@@ -22,12 +22,23 @@ const popupPicture = document.querySelector('#popup-picture');
 const imgPopup = popupPicture.querySelector('.popup__img');
 const captionPopup = popupPicture.querySelector('.popup__caption');
 
+const popups = document.querySelectorAll('.popup');
+
+const isEscape = (evt) => {
+  if (evt.key === 'Escape') {
+    closePopup(document.querySelector('.popup_opened'));
+  }
+};
+
 const openPopup = (popup) => {
   popup.classList.add('popup_opened');
+  document.addEventListener('keydown', isEscape);
 };
 
 const closePopup = (popup) => {
   popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', isEscape);
+  resetValidateForm(popup);
 };
 
 const openPopupPicture = (namePicture, link) => {
@@ -97,6 +108,12 @@ const sendFormCreatePicture = (evt) => {
   closePopup(popupAdd);
 };
 
+const isOverlay = (evt) => {
+  if (evt.target.classList.contains('popup')) {
+    closePopup(evt.target);
+  }
+};
+
 initCards();
 
 buttonEdit.addEventListener('click', openEditProfile);
@@ -105,6 +122,8 @@ buttonsClose.forEach(el => {
   const popup = el.closest('.popup');
   el.addEventListener('click', () => closePopup(popup));
 });
+
+popups.forEach(popup => popup.addEventListener('click', isOverlay));
 
 formPopupEdit.addEventListener('submit', sendFormEditProfile);
 formPopupAdd.addEventListener('submit', sendFormCreatePicture);
