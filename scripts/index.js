@@ -38,7 +38,6 @@ const openPopup = (popup) => {
 const closePopup = (popup) => {
   popup.classList.remove('popup_opened');
   document.removeEventListener('keydown', isEscape);
-  resetValidateForm(popup);
 };
 
 const openPopupPicture = (namePicture, link) => {
@@ -83,14 +82,13 @@ const initCards = () => {
 const openEditProfile = () => {
   inputName.value = profileName.textContent;
   inputStatus.value = profileStatus.textContent;
-  resetValidateForm(popupEdit);
+  resetValidateForm(popupEdit, objectConfiguration);
   openPopup(popupEdit);
 };
 
 const openAddPicture = () => {
+  resetValidateForm(popupAdd, objectConfiguration);
   openPopup(popupAdd);
-  inputTitlePlace.value = '';
-  inputSourceImage.value = '';
 };
 
 const sendFormEditProfile = (evt) => {

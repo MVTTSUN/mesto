@@ -1,3 +1,12 @@
+const objectConfiguration = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__submit-button',
+  inactiveButtonClass: 'popup__submit-button_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__error_visible'
+};
+
 const hasInvalidInput = (inputs) => {
   const inputList = Array.from(inputs);
 
@@ -63,31 +72,19 @@ const enableValidation = ({
   forms.forEach(form => formValidate(form, inputSelector, submitButtonSelector, inactiveButtonClass, inputErrorClass, errorClass));
 };
 
-const resetValidateForm = (popup) => {
-  const form = popup.querySelector('.popup__form');
-  const button = form.querySelector('.popup__submit-button');
-  const inputs = form.querySelectorAll('.popup__input');
+const resetValidateForm = (popup, objectConfiguration) => {
+  const { formSelector, inputSelector, submitButtonSelector, inactiveButtonClass, inputErrorClass, errorClass } = objectConfiguration;
+  const form = popup.querySelector(formSelector);
+  const inputs = form.querySelectorAll(inputSelector);
+  const button = form.querySelector(submitButtonSelector);
 
   if (popup.id === 'popup-add') {
     form.reset();
   }
 
-  inputs.forEach((input) => {
-    const errorElement = form.querySelector(`.${input.id}-error`);
+  inputs.forEach((input) => hideError(form, input, inputErrorClass, errorClass));
 
-    errorElement.textContent = '';
-    errorElement.classList.remove('popup__error_visible');
-    input.classList.remove('popup__input_type_error');
-  });
-
-  toggleButtonState(inputs, button, 'popup__submit-button_disabled');
+  toggleButtonState(inputs, button, inactiveButtonClass);
 };
 
-enableValidation({
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__submit-button',
-  inactiveButtonClass: 'popup__submit-button_disabled',
-  inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__error_visible'
-});
+enableValidation(objectConfiguration);
