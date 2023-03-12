@@ -84,7 +84,7 @@ const sendFormEditProfile = (evt) => {
 
 const sendFormCreatePicture = (evt) => {
   evt.preventDefault();
-  const card = createCard(inputTitlePlace.value, inputSourceImage.value);
+  const card = new Card({ name: inputTitlePlace.value, link: inputSourceImage.value }, '#card-template', openPopupImage).createCard();
   renderCard(card);
   closePopup(popupAdd);
 };
