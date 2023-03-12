@@ -22,13 +22,9 @@ export default class Card {
     this._element.querySelector('.card__trash-button').addEventListener('click', this._delete);
   };
   
-  _like = () => {
-    this._likeButton.classList.toggle('card__like-button_active');
-  };
+  _like = () => this._likeButton.classList.toggle('card__like-button_active');
   
-  _delete = () => {
-    this._element.remove();
-  };
+  _delete = () => this._element.remove();
 
   createCard = () => {
     this._element = this._getTemplate();

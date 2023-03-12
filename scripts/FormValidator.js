@@ -11,11 +11,7 @@ export default class FormValidator {
     this._button = this._form.querySelector(this._submitButtonSelector);
   }
 
-  _hasInvalidInput = () => {
-    const inputList = Array.from(this._inputs);
-  
-    return inputList.some((input) => !input.validity.valid);
-  }
+  _hasInvalidInput = () => Array.from(this._inputs).some((input) => !input.validity.valid);
   
   _toggleButtonState = () => {
     if (this._hasInvalidInput(this._inputs)) {
@@ -60,9 +56,7 @@ export default class FormValidator {
     }));
   };
 
-  enableValidation = () => {
-    this._formValidate();
-  };
+  enableValidation = () => this._formValidate();
 
   resetValidateForm = () => {
     if (this._form.id === 'form-popup-add') {

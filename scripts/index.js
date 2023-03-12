@@ -25,6 +25,10 @@ const popups = document.querySelectorAll('.popup');
 
 const formValidators = new Map();
 
+const popupPicture = document.querySelector('#popup-picture');
+const imgPopup = popupPicture.querySelector('.popup__img');
+const captionPopup = popupPicture.querySelector('.popup__caption');
+
 const isEscape = (evt) => {
   if (evt.key === 'Escape') {
     closePopup(document.querySelector('.popup_opened'));
@@ -42,10 +46,6 @@ const closePopup = (popup) => {
 };
 
 const openPopupImage = (linkImage, title) => {
-  const popupPicture = document.querySelector('#popup-picture');
-  const imgPopup = popupPicture.querySelector('.popup__img');
-  const captionPopup = popupPicture.querySelector('.popup__caption');
-
   imgPopup.src = linkImage;
   imgPopup.alt = title;
   captionPopup.textContent = title;
@@ -54,12 +54,9 @@ const openPopupImage = (linkImage, title) => {
 
 const renderCard = (card) => cardsContainer.prepend(card);
 
-const initCards = () => {
-  initialCards.forEach((data) => {
-    const card = new Card(data, '#card-template', openPopupImage).createCard();
-    renderCard(card);
-  });
-};
+const createCard = (data) => new Card(data, '#card-template', openPopupImage).createCard();
+
+const initCards = () => initialCards.forEach((data) => renderCard(createCard(data)));
 
 const openEditProfile = () => {
   inputName.value = profileName.textContent;
@@ -70,6 +67,7 @@ const openEditProfile = () => {
 
 const openAddPicture = () => {
   formValidators.get(`form-${popupAdd.id}`).resetValidateForm();
+  popupAdd.querySelector(`#form-${popupAdd.id}`).reset();
   openPopup(popupAdd);
 };
 
@@ -84,8 +82,7 @@ const sendFormEditProfile = (evt) => {
 
 const sendFormCreatePicture = (evt) => {
   evt.preventDefault();
-  const card = new Card({ name: inputTitlePlace.value, link: inputSourceImage.value }, '#card-template', openPopupImage).createCard();
-  renderCard(card);
+  renderCard(createCard({ name: inputTitlePlace.value, link: inputSourceImage.value }));
   closePopup(popupAdd);
 };
 
