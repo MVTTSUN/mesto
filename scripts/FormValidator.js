@@ -59,10 +59,6 @@ export default class FormValidator {
   enableValidation = () => this._formValidate();
 
   resetValidateForm = () => {
-    if (this._form.id === 'form-popup-add') {
-      this._form.reset();
-    }
-  
     this._inputs.forEach((input) => this._hideError(input));
   
     this._toggleButtonState();
