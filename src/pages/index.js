@@ -11,9 +11,12 @@ const buttonEdit = document.querySelector('.profile__edit-button');
 const buttonAdd = document.querySelector('.profile__add-button');
 const formValidators = new Map();
 
+const createCard = (data) => {
+  return new Card(data, '#card-template', (data) => popupWithImageComponent.open(data)).createCard();
+};
+
 const renderCard = (data) => {
-  const cardElement = new Card(data, '#card-template', (data) => popupWithImageComponent.open(data)).createCard();
-  sectionPhotoComponent.addItem(cardElement);
+  sectionPhotoComponent.addItem(createCard(data));
 }
 
 const openEditProfile = () => {
