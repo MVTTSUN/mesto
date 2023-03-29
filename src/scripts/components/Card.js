@@ -1,12 +1,12 @@
 export default class Card {
-  constructor(data, templateId, openPopupImage) {
+  constructor(data, templateId, handleCardClick) {
     this._templateId = templateId;
     this._title = data.name;
     this._linkImage = data.link;
-    this._openPopupImage = openPopupImage;
+    this._handleCardClick = handleCardClick;
   }
 
-  _getTemplate = () => {
+  _getTemplate() {
     const cardElement = document
       .querySelector(this._templateId)
       .content
@@ -16,17 +16,21 @@ export default class Card {
     return cardElement;
   };
 
-  _setEventListeners = () => {
-    this._cardImage.addEventListener('click', () => this._openPopupImage(this._linkImage, this._title));
-    this._likeButton.addEventListener('click', this._like);
-    this._element.querySelector('.card__trash-button').addEventListener('click', this._delete);
+  _setEventListeners() {
+    this._cardImage.addEventListener('click', () => this._handleCardClick({ linkImage: this._linkImage, title: this._title }));
+    this._likeButton.addEventListener('click', this._like.bind(this));
+    this._element.querySelector('.card__trash-button').addEventListener('click', this._delete.bind(this));
   };
   
-  _like = () => this._likeButton.classList.toggle('card__like-button_active');
+  _like() {
+    this._likeButton.classList.toggle('card__like-button_active');
+  }
   
-  _delete = () => this._element.remove();
+  _delete() {
+    this._element.remove();
+  }
 
-  createCard = () => {
+  createCard() {
     this._element = this._getTemplate();
     this._likeButton = this._element.querySelector('.card__like-button');
     this._cardImage = this._element.querySelector('.card__img');

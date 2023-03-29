@@ -1,7 +1,2 @@
-*.json
-
 node_modules
 dist
-build
-
-webpack.config.js
