@@ -32,9 +32,15 @@ var Api = /*#__PURE__*/function () {
     this._url = url;
   }
   _createClass(Api, [{
+    key: "_getResponseData",
+    value: function _getResponseData(res) {
+      return res.ok ? res.json() : Promise.reject();
+    }
+  }, {
     key: "getCards",
     value: function () {
       var _getCards = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        var _this = this;
         return _regeneratorRuntime().wrap(function _callee$(_context) {
           while (1) switch (_context.prev = _context.next) {
             case 0:
@@ -43,9 +49,7 @@ var Api = /*#__PURE__*/function () {
                   authorization: this._token
                 }
               }).then(function (res) {
-                return res.ok ? res.json() : Promise.reject();
-              }).catch(function (err) {
-                return console.log(err);
+                return _this._getResponseData(res);
               }));
             case 1:
             case "end":
@@ -62,6 +66,7 @@ var Api = /*#__PURE__*/function () {
     key: "sendCard",
     value: function () {
       var _sendCard = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(_ref2) {
+        var _this2 = this;
         var name, link;
         return _regeneratorRuntime().wrap(function _callee2$(_context2) {
           while (1) switch (_context2.prev = _context2.next) {
@@ -78,9 +83,7 @@ var Api = /*#__PURE__*/function () {
                   link: link
                 })
               }).then(function (res) {
-                return res.ok ? res.json() : Promise.reject();
-              }).catch(function (err) {
-                return console.log(err);
+                return _this2._getResponseData(res);
               }));
             case 2:
             case "end":
@@ -97,6 +100,7 @@ var Api = /*#__PURE__*/function () {
     key: "deleteCard",
     value: function () {
       var _deleteCard = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(cardId) {
+        var _this3 = this;
         return _regeneratorRuntime().wrap(function _callee3$(_context3) {
           while (1) switch (_context3.prev = _context3.next) {
             case 0:
@@ -106,9 +110,7 @@ var Api = /*#__PURE__*/function () {
                   authorization: this._token
                 }
               }).then(function (res) {
-                return res.ok ? res.json() : Promise.reject();
-              }).catch(function (err) {
-                return console.log(err);
+                return _this3._getResponseData(res);
               }));
             case 1:
             case "end":
@@ -125,6 +127,7 @@ var Api = /*#__PURE__*/function () {
     key: "getUserInfo",
     value: function () {
       var _getUserInfo = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
+        var _this4 = this;
         return _regeneratorRuntime().wrap(function _callee4$(_context4) {
           while (1) switch (_context4.prev = _context4.next) {
             case 0:
@@ -133,9 +136,7 @@ var Api = /*#__PURE__*/function () {
                   authorization: this._token
                 }
               }).then(function (res) {
-                return res.ok ? res.json() : Promise.reject();
-              }).catch(function (err) {
-                return console.log(err);
+                return _this4._getResponseData(res);
               }));
             case 1:
             case "end":
@@ -152,6 +153,7 @@ var Api = /*#__PURE__*/function () {
     key: "updateUserInfo",
     value: function () {
       var _updateUserInfo = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5(_ref3) {
+        var _this5 = this;
         var name, about;
         return _regeneratorRuntime().wrap(function _callee5$(_context5) {
           while (1) switch (_context5.prev = _context5.next) {
@@ -168,9 +170,7 @@ var Api = /*#__PURE__*/function () {
                   about: about
                 })
               }).then(function (res) {
-                return res.ok ? res.json() : Promise.reject();
-              }).catch(function (err) {
-                return console.log(err);
+                return _this5._getResponseData(res);
               }));
             case 2:
             case "end":
@@ -187,6 +187,7 @@ var Api = /*#__PURE__*/function () {
     key: "updateUserAvatar",
     value: function () {
       var _updateUserAvatar = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6(_ref4) {
+        var _this6 = this;
         var avatar;
         return _regeneratorRuntime().wrap(function _callee6$(_context6) {
           while (1) switch (_context6.prev = _context6.next) {
@@ -202,9 +203,7 @@ var Api = /*#__PURE__*/function () {
                   avatar: avatar
                 })
               }).then(function (res) {
-                return res.ok ? res.json() : Promise.reject();
-              }).catch(function (err) {
-                return console.log(err);
+                return _this6._getResponseData(res);
               }));
             case 2:
             case "end":
@@ -221,6 +220,7 @@ var Api = /*#__PURE__*/function () {
     key: "sendLike",
     value: function () {
       var _sendLike = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7(cardId) {
+        var _this7 = this;
         return _regeneratorRuntime().wrap(function _callee7$(_context7) {
           while (1) switch (_context7.prev = _context7.next) {
             case 0:
@@ -231,9 +231,7 @@ var Api = /*#__PURE__*/function () {
                   'Content-Type': 'application/json'
                 }
               }).then(function (res) {
-                return res.ok ? res.json() : Promise.reject();
-              }).catch(function (err) {
-                return console.log(err);
+                return _this7._getResponseData(res);
               }));
             case 1:
             case "end":
@@ -250,6 +248,7 @@ var Api = /*#__PURE__*/function () {
     key: "deleteLike",
     value: function () {
       var _deleteLike = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee8(cardId) {
+        var _this8 = this;
         return _regeneratorRuntime().wrap(function _callee8$(_context8) {
           while (1) switch (_context8.prev = _context8.next) {
             case 0:
@@ -259,9 +258,7 @@ var Api = /*#__PURE__*/function () {
                   authorization: this._token
                 }
               }).then(function (res) {
-                return res.ok ? res.json() : Promise.reject();
-              }).catch(function (err) {
-                return console.log(err);
+                return _this8._getResponseData(res);
               }));
             case 1:
             case "end":
@@ -298,7 +295,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
 function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 var Card = /*#__PURE__*/function () {
-  function Card(data, templateId, handleCardClick, handleCardDelete, handleSendLike, handleDeleteLike, myUserInfo) {
+  function Card(data, templateId, handleCardClick, handleCardDelete, handleUpdateLike, myUserInfo) {
     _classCallCheck(this, Card);
     this._templateId = templateId;
     this._title = data.name;
@@ -309,8 +306,7 @@ var Card = /*#__PURE__*/function () {
     this._handleCardClick = handleCardClick;
     this._handleCardDelete = handleCardDelete;
     this._myUserInfo = myUserInfo;
-    this._handleSendLike = handleSendLike;
-    this._handleDeleteLike = handleDeleteLike;
+    this._handleUpdateLike = handleUpdateLike;
   }
   _createClass(Card, [{
     key: "_getTemplate",
@@ -328,26 +324,22 @@ var Card = /*#__PURE__*/function () {
           title: _this._title
         });
       });
-      this._likeButton.addEventListener('click', this._like.bind(this));
+      this._likeButton.addEventListener('click', this._updateLike.bind(this));
       this._buttonDelete.addEventListener('click', this._delete.bind(this));
     }
   }, {
-    key: "_like",
-    value: function _like() {
+    key: "_updateLike",
+    value: function _updateLike() {
       var _this2 = this;
-      if (this._likes.some(function (userInfo) {
-        return userInfo._id === _this2._myUserInfo.id;
-      })) {
-        this._handleDeleteLike(this._cardId).then(function (card) {
-          _this2._likeButton.classList.remove('card__like-button_active');
-          _this2._likeCounter.textContent = card.likes.length;
-        });
-      } else {
-        this._handleSendLike(this._cardId).then(function (card) {
-          _this2._likeButton.classList.add('card__like-button_active');
-          _this2._likeCounter.textContent = card.likes.length;
-        });
-      }
+      this._handleUpdateLike(this._cardId, this._likes, this._myUserInfo, this._likeCounter, function (likes) {
+        _this2._likeButton.classList.toggle('card__like-button_active');
+        _this2._setLikesCard(likes);
+      });
+    }
+  }, {
+    key: "_setLikesCard",
+    value: function _setLikesCard(likes) {
+      this._likes = likes;
     }
   }, {
     key: "_delete",
@@ -594,23 +586,18 @@ var PopupConfirmDelete = /*#__PURE__*/function (_Popup) {
     key: "setEventListeners",
     value: function setEventListeners() {
       _get(_getPrototypeOf(PopupConfirmDelete.prototype), "setEventListeners", this).call(this);
-      this._deleteButton.addEventListener('click', this._delete.bind(this));
+      this._deleteButton.addEventListener('click', this._deleteCard.bind(this));
     }
   }, {
-    key: "open",
-    value: function open(card, cardId) {
-      _get(_getPrototypeOf(PopupConfirmDelete.prototype), "open", this).call(this);
+    key: "setCard",
+    value: function setCard(card, cardId) {
       this._card = card;
       this._cardId = cardId;
     }
   }, {
-    key: "_delete",
-    value: function _delete() {
-      var _this2 = this;
-      this._handleDeleteCard(this._cardId).then(function () {
-        _this2._card.remove();
-        _this2.close();
-      });
+    key: "_deleteCard",
+    value: function _deleteCard() {
+      this._handleDeleteCard(this._cardId, this._card);
     }
   }]);
   return PopupConfirmDelete;
@@ -698,16 +685,16 @@ var PopupWithForm = /*#__PURE__*/function (_Popup) {
       this._form.reset();
     }
   }, {
-    key: "startSaving",
-    value: function startSaving(text) {
-      this._buttonSubmit.textContent = text;
-      this._buttonSubmit.style.pointerEvents = 'none';
-    }
-  }, {
-    key: "endSaving",
-    value: function endSaving() {
-      this._buttonSubmit.textContent = this.textButtonSubmit;
-      this._buttonSubmit.style.pointerEvents = 'auto';
+    key: "renderLoading",
+    value: function renderLoading(isLoading) {
+      var text = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
+      if (isLoading) {
+        this._buttonSubmit.textContent = text;
+        this._buttonSubmit.disabled = true;
+      } else {
+        this._buttonSubmit.textContent = this.textButtonSubmit;
+        this._buttonSubmit.disabled = false;
+      }
     }
   }]);
   return PopupWithForm;
@@ -1002,11 +989,25 @@ var createCard = function createCard(data) {
   return new _scripts_components_Card_js__WEBPACK_IMPORTED_MODULE_3__["default"](data, '#card-template', function (data) {
     return popupWithImageComponent.open(data);
   }, function (card, cardId) {
-    return popupConfirmDeleteComponent.open(card, cardId);
-  }, function (cardId) {
-    return api.sendLike(cardId);
-  }, function (cardId) {
-    return api.deleteLike(cardId);
+    popupConfirmDeleteComponent.setCard(card, cardId), popupConfirmDeleteComponent.open();
+  }, function (cardId, likesCard, myUserInfo, likeCounter, handleSetLikesCard) {
+    if (likesCard.some(function (userInfo) {
+      return userInfo._id === myUserInfo.id;
+    })) {
+      api.deleteLike(cardId).then(function (card) {
+        likeCounter.textContent = card.likes.length;
+        handleSetLikesCard(card.likes);
+      }).catch(function (err) {
+        return console.log(err);
+      });
+    } else {
+      api.sendLike(cardId).then(function (card) {
+        likeCounter.textContent = card.likes.length;
+        handleSetLikesCard(card.likes);
+      }).catch(function (err) {
+        return console.log(err);
+      });
+    }
   }, userInfoComponent.getUserInfo()).createCard();
 };
 var renderCard = function renderCard(data) {
@@ -1032,30 +1033,44 @@ var sectionPhotoComponent = new _scripts_components_Section_js__WEBPACK_IMPORTED
 var userInfoComponent = new _scripts_components_UserInfo_js__WEBPACK_IMPORTED_MODULE_8__["default"]('.profile__name', '.profile__status', '.profile__avatar');
 var popupWithImageComponent = new _scripts_components_PopupWithImage_js__WEBPACK_IMPORTED_MODULE_5__["default"]('#popup-picture');
 var popupAddComponent = new _scripts_components_PopupWithForm_js__WEBPACK_IMPORTED_MODULE_6__["default"]('#popup-add', function (data) {
-  popupAddComponent.startSaving('Создание...');
+  popupAddComponent.renderLoading(true, 'Создание...');
   api.sendCard(data).then(function (data) {
     renderCard(data);
-    popupAddComponent.endSaving();
     popupAddComponent.close();
+  }).catch(function (err) {
+    return console.log(err);
+  }).finally(function () {
+    return popupAddComponent.renderLoading(false);
   });
 });
 var popupEditComponent = new _scripts_components_PopupWithForm_js__WEBPACK_IMPORTED_MODULE_6__["default"]('#popup-edit', function (data) {
-  popupEditComponent.startSaving('Сохранение...');
+  popupEditComponent.renderLoading(true, 'Сохранение...');
   api.updateUserInfo(data).then(function (data) {
     userInfoComponent.setUserInfo(data);
-    popupEditComponent.endSaving();
     popupEditComponent.close();
+  }).catch(function (err) {
+    return console.log(err);
+  }).finally(function () {
+    return popupEditComponent.renderLoading(false);
   });
 });
-var popupConfirmDeleteComponent = new _scripts_components_PopupConfirmDelete__WEBPACK_IMPORTED_MODULE_7__["default"]('#popup-confirm-delete', function (cardId) {
-  return api.deleteCard(cardId);
+var popupConfirmDeleteComponent = new _scripts_components_PopupConfirmDelete__WEBPACK_IMPORTED_MODULE_7__["default"]('#popup-confirm-delete', function (cardId, card) {
+  return api.deleteCard(cardId).then(function () {
+    card.remove();
+    popupConfirmDeleteComponent.close();
+  }).catch(function (err) {
+    return console.log(err);
+  });
 });
 var popupEditAvatarComponent = new _scripts_components_PopupWithForm_js__WEBPACK_IMPORTED_MODULE_6__["default"]('#popup-avatar', function (data) {
-  popupEditAvatarComponent.startSaving('Сохранение...');
+  popupEditAvatarComponent.renderLoading(true, 'Сохранение...');
   api.updateUserAvatar(data).then(function (data) {
     userInfoComponent.setUserInfo(data);
-    popupEditAvatarComponent.endSaving();
     popupEditAvatarComponent.close();
+  }).catch(function (err) {
+    return console.log(err);
+  }).finally(function () {
+    return popupEditAvatarComponent.renderLoading(false);
   });
 });
 popupWithImageComponent.setEventListeners();
@@ -1065,9 +1080,13 @@ popupConfirmDeleteComponent.setEventListeners();
 popupEditAvatarComponent.setEventListeners();
 api.getUserInfo().then(function (userInfo) {
   return userInfoComponent.setUserInfo(userInfo);
+}).catch(function (err) {
+  return console.log(err);
 });
 api.getCards().then(function (cards) {
   return sectionPhotoComponent.render(cards.reverse());
+}).catch(function (err) {
+  return console.log(err);
 });
 buttonEdit.addEventListener('click', openEditProfile);
 buttonAdd.addEventListener('click', openAddPicture);
