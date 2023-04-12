@@ -20,9 +20,27 @@ const createCard = (data) => {
     data,
     '#card-template',
     (data) => popupWithImageComponent.open(data),
-    (card, cardId) => popupConfirmDeleteComponent.open(card, cardId),
-    (cardId) => api.sendLike(cardId),
-    (cardId) => api.deleteLike(cardId),
+    (card, cardId) => {
+      popupConfirmDeleteComponent.setCard(card, cardId),
+      popupConfirmDeleteComponent.open()
+    },
+    (cardId, likesCard, myUserInfo, likeCounter, handleSetLikesCard) => {
+      if (likesCard.some((userInfo) => userInfo._id === myUserInfo.id)) {
+        api.deleteLike(cardId)
+          .then((card) => {
+            likeCounter.textContent = card.likes.length;
+            handleSetLikesCard(card.likes);
+          })
+          .catch((err) => console.log(err));
+      } else {
+        api.sendLike(cardId)
+          .then((card) => {
+            likeCounter.textContent = card.likes.length;
+            handleSetLikesCard(card.likes);
+          })
+          .catch((err) => console.log(err));
+      }
+    },
     userInfoComponent.getUserInfo()).createCard();
 };
 
@@ -55,35 +73,43 @@ const userInfoComponent = new UserInfo(
 );
 const popupWithImageComponent = new PopupWithImage('#popup-picture');
 const popupAddComponent = new PopupWithForm('#popup-add', (data) => {
-  popupAddComponent.startSaving('Создание...');
+  popupAddComponent.renderLoading(true, 'Создание...');
   api.sendCard(data)
     .then((data) => {
       renderCard(data);
-      popupAddComponent.endSaving();
       popupAddComponent.close();
-    });
+    })
+    .catch((err) => console.log(err))
+    .finally(() => popupAddComponent.renderLoading(false));
 });
 const popupEditComponent = new PopupWithForm('#popup-edit', (data) => {
-  popupEditComponent.startSaving('Сохранение...');
+  popupEditComponent.renderLoading(true, 'Сохранение...');
   api.updateUserInfo(data)
     .then((data) => {
       userInfoComponent.setUserInfo(data);
-      popupEditComponent.endSaving();
       popupEditComponent.close();
-    });
+    })
+    .catch((err) => console.log(err))
+    .finally(() => popupEditComponent.renderLoading(false));
 });
 const popupConfirmDeleteComponent = new PopupConfirmDelete(
   '#popup-confirm-delete',
-  (cardId) => api.deleteCard(cardId)
+  (cardId, card) => api.deleteCard(cardId)
+    .then(() => {
+      card.remove();
+      popupConfirmDeleteComponent.close();
+    })
+    .catch((err) => console.log(err))
 );
 const popupEditAvatarComponent = new PopupWithForm('#popup-avatar', (data) => {
-  popupEditAvatarComponent.startSaving('Сохранение...');
+  popupEditAvatarComponent.renderLoading(true, 'Сохранение...');
   api.updateUserAvatar(data)
     .then((data) => {
       userInfoComponent.setUserInfo(data);
-      popupEditAvatarComponent.endSaving();
       popupEditAvatarComponent.close();
-    });
+    })
+    .catch((err) => console.log(err))
+    .finally(() => popupEditAvatarComponent.renderLoading(false));
 });
 
 popupWithImageComponent.setEventListeners();
@@ -92,8 +118,12 @@ popupEditComponent.setEventListeners();
 popupConfirmDeleteComponent.setEventListeners();
 popupEditAvatarComponent.setEventListeners();
 
-api.getUserInfo().then((userInfo) => userInfoComponent.setUserInfo(userInfo));
-api.getCards().then((cards) => sectionPhotoComponent.render(cards.reverse()));
+api.getUserInfo()
+  .then((userInfo) => userInfoComponent.setUserInfo(userInfo))
+  .catch((err) => console.log(err));
+api.getCards()
+  .then((cards) => sectionPhotoComponent.render(cards.reverse()))
+  .catch((err) => console.log(err));
 
 buttonEdit.addEventListener('click', openEditProfile);
 buttonAdd.addEventListener('click', openAddPicture);

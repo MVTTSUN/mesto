@@ -5,14 +5,17 @@ export default class Api {
     this._url = url;
   }
 
+  _getResponseData(res) {
+    return res.ok ? res.json() : Promise.reject();
+  }
+
   async getCards() {
     return fetch(`${this._url}${this._cohort}/cards`, {
       headers: {
         authorization: this._token
       }
     })
-      .then((res) => res.ok ? res.json() : Promise.reject())
-      .catch((err) => console.log(err));
+      .then((res) => this._getResponseData(res))
   };
 
   async sendCard({ name, link }) {
@@ -27,8 +30,7 @@ export default class Api {
         link: link
       })
     })
-      .then((res) => res.ok ? res.json() : Promise.reject())
-      .catch((err) => console.log(err));
+      .then((res) => this._getResponseData(res));
   };
 
   async deleteCard(cardId) {
@@ -38,8 +40,7 @@ export default class Api {
         authorization: this._token
       }
     })
-      .then((res) => res.ok ? res.json() : Promise.reject())
-      .catch((err) => console.log(err));
+      .then((res) => this._getResponseData(res));
   };
 
   async getUserInfo() {
@@ -48,8 +49,7 @@ export default class Api {
         authorization: this._token
       }
     })
-      .then((res) => res.ok ? res.json() : Promise.reject())
-      .catch((err) => console.log(err));
+      .then((res) => this._getResponseData(res));
   };
 
   async updateUserInfo({ name, about }) {
@@ -64,8 +64,7 @@ export default class Api {
         about: about
       })
     })
-      .then((res) => res.ok ? res.json() : Promise.reject())
-      .catch((err) => console.log(err));
+      .then((res) => this._getResponseData(res));
   };
 
   async updateUserAvatar({ avatar }) {
@@ -79,8 +78,7 @@ export default class Api {
         avatar: avatar
       })
     })
-      .then((res) => res.ok ? res.json() : Promise.reject())
-      .catch((err) => console.log(err));
+      .then((res) => this._getResponseData(res));
   }
 
   async sendLike(cardId) {
@@ -91,8 +89,7 @@ export default class Api {
         'Content-Type': 'application/json'
       }
     })
-      .then((res) => res.ok ? res.json() : Promise.reject())
-      .catch((err) => console.log(err));
+      .then((res) => this._getResponseData(res));
   };
 
   async deleteLike(cardId) {
@@ -102,7 +99,6 @@ export default class Api {
         authorization: this._token
       }
     })
-      .then((res) => res.ok ? res.json() : Promise.reject())
-      .catch((err) => console.log(err));
+      .then((res) => this._getResponseData(res));
   };
 }

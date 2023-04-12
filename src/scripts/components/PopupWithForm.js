@@ -38,13 +38,13 @@ export default class PopupWithForm extends Popup {
     this._form.reset();
   };
 
-  startSaving(text) {
-    this._buttonSubmit.textContent = text;
-    this._buttonSubmit.style.pointerEvents = 'none';
-  }
-
-  endSaving() {
-    this._buttonSubmit.textContent = this.textButtonSubmit;
-    this._buttonSubmit.style.pointerEvents = 'auto';
+  renderLoading(isLoading, text = '') {
+    if (isLoading) {
+      this._buttonSubmit.textContent = text;
+      this._buttonSubmit.disabled = true;
+    } else {
+      this._buttonSubmit.textContent = this.textButtonSubmit;
+      this._buttonSubmit.disabled = false;
+    }
   }
 }

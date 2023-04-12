@@ -10,20 +10,15 @@ export default class PopupConfirmDelete extends Popup {
 
   setEventListeners() {
     super.setEventListeners();
-    this._deleteButton.addEventListener('click', this._delete.bind(this));
+    this._deleteButton.addEventListener('click', this._deleteCard.bind(this));
   };
 
-  open(card, cardId) {
-    super.open();
+  setCard(card, cardId) {
     this._card = card;
     this._cardId = cardId;
   }
 
-  _delete() {
-    this._handleDeleteCard(this._cardId)
-      .then(() => {
-        this._card.remove();
-        this.close();
-      });
+  _deleteCard() {
+    this._handleDeleteCard(this._cardId, this._card);
   }
 }
