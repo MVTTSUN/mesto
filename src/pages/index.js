@@ -118,11 +118,11 @@ popupEditComponent.setEventListeners();
 popupConfirmDeleteComponent.setEventListeners();
 popupEditAvatarComponent.setEventListeners();
 
-api.getUserInfo()
-  .then((userInfo) => userInfoComponent.setUserInfo(userInfo))
-  .catch((err) => console.log(err));
-api.getCards()
-  .then((cards) => sectionPhotoComponent.render(cards.reverse()))
+Promise.all([api.getUserInfo(), api.getCards()])
+  .then((value) => {
+    userInfoComponent.setUserInfo(value[0]);
+    sectionPhotoComponent.render(value[1].reverse());
+  })
   .catch((err) => console.log(err));
 
 buttonEdit.addEventListener('click', openEditProfile);
