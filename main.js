@@ -1078,13 +1078,9 @@ popupAddComponent.setEventListeners();
 popupEditComponent.setEventListeners();
 popupConfirmDeleteComponent.setEventListeners();
 popupEditAvatarComponent.setEventListeners();
-api.getUserInfo().then(function (userInfo) {
-  return userInfoComponent.setUserInfo(userInfo);
-}).catch(function (err) {
-  return console.log(err);
-});
-api.getCards().then(function (cards) {
-  return sectionPhotoComponent.render(cards.reverse());
+Promise.all([api.getUserInfo(), api.getCards()]).then(function (value) {
+  userInfoComponent.setUserInfo(value[0]);
+  sectionPhotoComponent.render(value[1].reverse());
 }).catch(function (err) {
   return console.log(err);
 });
